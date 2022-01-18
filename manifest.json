@@ -1,0 +1,28 @@
+{
+  "name": "READER",
+  "description": "text reader extention",
+  "version": "1.0",
+  "manifest_version": 3,
+  "author": "NAYO",
+  "action": {
+    "default_title": "Text reader",
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "toggle": {
+      "suggested_key": "Ctrl+Shift+Z",
+      "description": "On/Off extension."
+    },
+    "_execute_action": {
+      "suggested_key": "Ctrl+Shift+Y"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ]
+}
