@@ -38,7 +38,7 @@ function execute(element) {
             top.style.opacity = val + '%';
             bottom.style.opacity = val + '%';
         }
-        let func = function (e) {
+        let keydownCallback = function (e) {
             if(e.key === '+' || e.key === '='){
                 fontSize++;
             }
@@ -53,11 +53,11 @@ function execute(element) {
         });
         wrapper.addEventListener("mousedown", function (e) {
             setHidersOpacity(30);
-            document.addEventListener("keydown", func);
+            document.addEventListener("keydown", keydownCallback);
         });
         wrapper.addEventListener("mouseup", function (e) {
             setHidersOpacity(95);
-            document.removeEventListener("keydown", func);
+            document.removeEventListener("keydown", keydownCallback);
         });
     }
 }
