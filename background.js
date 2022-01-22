@@ -21,46 +21,61 @@ function execute(element) {
         wrapper = document.getElementById('wrapperhider');
         let top = document.getElementById('tophider');
         let bottom = document.getElementById('bottomhider');
-        let fontSize = 18;
-        let mousePosition = {
-            x: window.innerWidth/2,
-            y: window.innerHeight/2
+        let options = {
+            fontSize: 55,
+            mousePosition: {
+                x: window.innerWidth/2,
+                y: window.innerHeight/2
+            },
+            maxOpacity: 60,
+            minOpacity: 30
         }
         let setMousePosition = function (x,y){
-            mousePosition.x = x;
-            mousePosition.y = y;
+            options.mousePosition.x = x;
+            options.mousePosition.y = y;
         }
         let setHidersHeight = function () {
-            top.style.top = (mousePosition.y - fontSize / 2) - window.innerHeight + 'px';
-            bottom.style.top = (mousePosition.y + fontSize / 2) + 'px';
+            top.style.top = (options.mousePosition.y - options.fontSize / 2) - window.innerHeight + 'px';
+            bottom.style.top = (options.mousePosition.y + options.fontSize / 2) + 'px';
         }
         let setHidersOpacity = function (val) {
             top.style.opacity = val + '%';
             bottom.style.opacity = val + '%';
         }
         let keydownCallback = function (e) {
-            if(e.key === '+' || e.key === '='){
-                fontSize++;
+            let key = e.key.toLowerCase()
+            if(['w', 'arrowup', 's', 'arrowdown'].includes(key)){
+                if(key === 'w' || key === 'arrowup'){
+                    options.fontSize++;
+                } else {
+                    options.fontSize--;
+                }
+                setHidersHeight();
             }
-            if(e.key === '-'){
-                fontSize--;
+            if(['d', 'arrowright', 'a', 'arrowleft'].includes(key)){
+                if(key === 'd' || key === 'arrowright'){
+                    options.maxOpacity++;
+                } else {
+                    options.maxOpacity--;
+                }
+                setHidersOpacity(options.maxOpacity);
             }
-            setHidersHeight();
         }
         wrapper.addEventListener("mousemove", function (e) {
             setMousePosition(e.clientX, e.clientY);
             setHidersHeight();
         });
         wrapper.addEventListener("mousedown", function (e) {
-            setHidersOpacity(30);
+            setHidersOpacity(options.minOpacity);
             document.addEventListener("keydown", keydownCallback);
         });
         wrapper.addEventListener("mouseup", function (e) {
-            setHidersOpacity(95);
+            setHidersOpacity(options.maxOpacity);
             document.removeEventListener("keydown", keydownCallback);
         });
     }
 }
+
 
 
 let element = "<div id=\"wrapperhider\">\n" +
@@ -87,8 +102,8 @@ let element = "<div id=\"wrapperhider\">\n" +
     "      height: 100%;\n" +
     "      background-color: white;\n" +
     "      font-size: 0;\n" +
-    "      border-bottom: 1px solid grey;\n" +
-    "      opacity: 95%;\n" +
+    "      border-bottom: 1px solid lightgray ;\n" +
+    "      opacity: 50%;\n" +
     "    }\n" +
     "    #bottomhider {\n" +
     "      position: absolute;\n" +
@@ -96,8 +111,8 @@ let element = "<div id=\"wrapperhider\">\n" +
     "      height: 100%;\n" +
     "      background-color: white;\n" +
     "      font-size: 0;\n" +
-    "      border-top: 1px solid grey;\n" +
-    "      opacity: 95%;\n" +
+    "      border-top: 1px solid lightgray ;\n" +
+    "      opacity: 50%;\n" +
     "    }\n" +
     "\n" +
     "  </style>\n" +
