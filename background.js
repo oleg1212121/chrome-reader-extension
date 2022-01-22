@@ -102,8 +102,8 @@ let element = "<div id=\"wrapperhider\">\n" +
     "      height: 100%;\n" +
     "      background-color: white;\n" +
     "      font-size: 0;\n" +
-    "      border-bottom: 1px solid lightgray ;\n" +
-    "      opacity: 50%;\n" +
+    "      border-bottom: 1px solid #e0e0e0 ;\n" +
+    "      opacity: 60%;\n" +
     "    }\n" +
     "    #bottomhider {\n" +
     "      position: absolute;\n" +
@@ -111,8 +111,8 @@ let element = "<div id=\"wrapperhider\">\n" +
     "      height: 100%;\n" +
     "      background-color: white;\n" +
     "      font-size: 0;\n" +
-    "      border-top: 1px solid lightgray ;\n" +
-    "      opacity: 50%;\n" +
+    "      border-top: 1px solid #e0e0e0 ;\n" +
+    "      opacity: 60%;\n" +
     "    }\n" +
     "\n" +
     "  </style>\n" +
