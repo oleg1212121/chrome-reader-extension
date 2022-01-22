@@ -28,7 +28,17 @@ function execute(element) {
                 y: window.innerHeight/2
             },
             maxOpacity: 60,
-            minOpacity: 30
+            minOpacity: 30,
+            keyboardKeys: {
+                fontSize: {
+                    plus: [87, 38, 104],
+                    minus: [83, 40, 98],
+                },
+                opacity: {
+                    plus: [68, 39, 102],
+                    minus: [65, 37, 100],
+                },
+            }
         }
         let setMousePosition = function (x,y){
             options.mousePosition.x = x;
@@ -43,17 +53,17 @@ function execute(element) {
             bottom.style.opacity = val + '%';
         }
         let keydownCallback = function (e) {
-            let key = e.key.toLowerCase()
-            if(['w', 'arrowup', 's', 'arrowdown'].includes(key)){
-                if(key === 'w' || key === 'arrowup'){
+            let key = e.keyCode
+            if(options.keyboardKeys.fontSize.plus.concat(options.keyboardKeys.fontSize.minus).includes(key)){
+                if(options.keyboardKeys.fontSize.plus.includes(key)){
                     options.fontSize++;
                 } else {
                     options.fontSize--;
                 }
                 setHidersHeight();
             }
-            if(['d', 'arrowright', 'a', 'arrowleft'].includes(key)){
-                if(key === 'd' || key === 'arrowright'){
+            if(options.keyboardKeys.opacity.plus.concat(options.keyboardKeys.opacity.minus).includes(key)){
+                if(options.keyboardKeys.opacity.plus.includes(key)){
                     options.maxOpacity++;
                 } else {
                     options.maxOpacity--;
